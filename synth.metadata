@@ -1,11 +1,17 @@
 {
-  "updateTime": "2020-03-31T12:13:49.228648Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/python-runtimeconfig.git",
+        "sha": "7fafc526cbad03e833f0f853f8fb41c244ee0200"
+      }
+    },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "a003d8655d3ebec2bbbd5fc3898e91e152265c67"
+        "sha": "f5e4c17dc78a966dbf29961dd01f9bbd63e20a04"
       }
     }
   ]
