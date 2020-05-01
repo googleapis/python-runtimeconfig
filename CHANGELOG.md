@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-runtimeconfig/#history
 
+### [0.30.1](https://www.github.com/googleapis/python-runtimeconfig/compare/v0.30.0...v0.30.1) (2020-05-01)
+
+
+### Bug Fixes
+
+* **runtimeconfig:** update test assertion and core version pins ([#10097](https://www.github.com/googleapis/python-runtimeconfig/issues/10097)) ([cb421af](https://www.github.com/googleapis/python-runtimeconfig/commit/cb421af64af0aa7e73d0da146458194fb955801d))
+
 ## 0.30.0
 
 10-15-2019 06:53 PDT
