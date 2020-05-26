@@ -118,6 +118,19 @@ class Variable(object):
         return self.config.client
 
     @property
+    def text(self):
+        """Text of the variable, as string.
+
+        See
+        https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/v1beta1/projects.configs.variables
+
+        :rtype: str or ``NoneType``
+        :returns: The text of the variable or ``None`` if the property
+                  is not set locally.
+        """
+        return self._properties.get("text")
+
+    @property
     def value(self):
         """Value of the variable, as bytes.
 
