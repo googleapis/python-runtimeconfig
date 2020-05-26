@@ -14,10 +14,8 @@
 
 """Create / interact with Google Cloud RuntimeConfig configs."""
 
-import base64
-
 from google.api_core import page_iterator
-from google.cloud.exceptions import Conflict, NotFound
+from google.cloud.exceptions import NotFound
 from google.cloud.runtimeconfig._helpers import config_name_from_full_name
 from google.cloud.runtimeconfig.variable import Variable
 
@@ -181,50 +179,6 @@ class Config(object):
         # exception.
         resp = client._connection.api_request(method="GET", path=self.path)
         self._set_properties(api_response=resp)
-
-    def create_variable(self, variable_name, value=None, is_text=False, client=None):
-        """API call:  create a variable via a ``POST`` request.
-
-        This will return False if the variable already exist::
-
-          >>> from google.cloud import runtimeconfig
-          >>> client = runtimeconfig.Client()
-          >>> config = client.config('my-config')
-          >>> print(config.create_variable('variable-name'))
-          True
-          >>> print(config.create_variable('variable-name'))
-          False
-
-        :type variable_name: str
-        :param variable_name: The name of the variable to create.
-
-        :type value: bytes or str
-        :param text: The text or value of the variable to create.
-
-        :type value: bytes
-        :param value: The bytes value of the variable to create.
-
-        :type client: :class:`~google.cloud.runtimeconfig.client.Client`
-        :param client:
-            (Optional) The client to use.  If not passed, falls back to the
-            ``client`` stored on the current config.
-
-        :rtype: bool
-        :returns: True on success, False if variable already exists.
-        """
-        client = self._require_client(client)
-        path = "%s/variables" % self.path
-        data = {'name': "%s/variables/%s" % (self.full_name, variable_name)}
-        if is_text:
-            data["text"] = value or ''
-        else:
-            data["value"] = base64.b64encode(value or b'').decode('utf-8')
-        try:
-            client._connection.api_request(method="POST", path=path, data=data)
-        except Conflict:
-            return False
-        # we could return the variable here by calling _set_properties
-        return True
 
     def get_variable(self, variable_name, client=None):
         """API call:  get a variable via a ``GET`` request.
