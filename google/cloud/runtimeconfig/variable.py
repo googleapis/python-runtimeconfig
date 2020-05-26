@@ -131,7 +131,7 @@ class Variable(object):
         return self._properties.get("text")
 
     @text.setter
-    def set_text(self, value):
+    def text(self, value):
         """Set text property.
 
         If the variable is already using value, this will raise a TypeError
@@ -162,7 +162,7 @@ class Variable(object):
         return value
 
     @value.setter
-    def set_value(self, value):
+    def value(self, value):
         """Set value property.
 
         If the variable is already using text, this will raise a TypeError
@@ -257,7 +257,7 @@ class Variable(object):
         if "text" in self._properties:
             data["text"] = self._properties["text"]
         elif "value" in self._properties:
-            value = self._properties["text"]
+            value = self._properties["value"]
             data["value"] = base64.b64encode(value).decode('utf-8')
         else:
             raise TypeError("No text or value set.")
