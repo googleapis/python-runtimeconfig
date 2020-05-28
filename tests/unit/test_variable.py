@@ -119,12 +119,13 @@ class TestVariable(unittest.TestCase):
 
     def test_create_no_data(self):
         from google.cloud.runtimeconfig.config import Config
+        from google.cloud.runtimeconfig.exceptions import Error
 
         conn = _Connection()
         client = _Client(project=self.PROJECT, connection=conn)
         config = Config(name=self.CONFIG_NAME, client=client)
         variable = config.variable(self.VARIABLE_NAME)
-        with self.assertRaises(TypeError) as ctx:
+        with self.assertRaises(Error) as ctx:
             variable.create()
         self.assertEqual("No text or value set.", str(ctx.exception))
 

@@ -43,6 +43,7 @@ import pytz
 from google.api_core import datetime_helpers
 from google.cloud.exceptions import Conflict, NotFound
 from google.cloud.runtimeconfig._helpers import variable_name_from_full_name
+from google.cloud.runtimeconfig.exceptions import Error
 
 
 STATE_UNSPECIFIED = "VARIABLE_STATE_UNSPECIFIED"
@@ -134,15 +135,15 @@ class Variable(object):
     def text(self, value):
         """Set text property.
 
-        If the variable is already using value, this will raise a TypeError
-        since text and value are mutually exclusive.
+        If the variable is already using value, this will raise
+        exceptions.Error since text and value are mutually exclusive.
         To persist the change, call create() or update().
 
         :type value: str
         :param value: The new value for the text property.
         """
         if "value" in self._properties:
-            raise TypeError("Value and text are mutually exclusive.")
+            raise Error("Value and text are mutually exclusive.")
         self._properties["text"] = value
 
     @property
@@ -165,7 +166,7 @@ class Variable(object):
     def value(self, value):
         """Set value property.
 
-        If the variable is already using text, this will raise a TypeError
+        If the variable is already using text, this will raise exceptions.Error
         since text and value are mutually exclusive.
         To persist the change, call create() or update().
 
@@ -173,7 +174,7 @@ class Variable(object):
         :param value: The new value for the value property.
         """
         if "text" in self._properties:
-            raise TypeError("Value and text are mutually exclusive.")
+            raise Error("Value and text are mutually exclusive.")
         self._properties["value"] = value
 
     @property
@@ -260,7 +261,7 @@ class Variable(object):
             value = self._properties["value"]
             data["value"] = base64.b64encode(value).decode('utf-8')
         else:
-            raise TypeError("No text or value set.")
+            raise Error("No text or value set.")
         return data
 
     def create(self, client=None):
