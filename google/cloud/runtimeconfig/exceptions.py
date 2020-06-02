@@ -16,4 +16,4 @@
 
 
 class Error(Exception):
-    """Exception representing all non-warning RuntimeConfig errors."""
+    """Exception for all non-warning RuntimeConfig errors."""
