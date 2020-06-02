@@ -175,6 +175,58 @@ class TestVariable(unittest.TestCase):
                          self.PROJECT, self.CONFIG_NAME))
         self._verifyResourceProperties(variable, RESOURCE)
 
+    def test_update_text_conflict(self):
+        from google.cloud.runtimeconfig.config import Config
+        from google.cloud.runtimeconfig.exceptions import Error
+
+        RESOURCE = {
+            "name": self.PATH,
+            "value": "bXktdmFyaWFibGUtdmFsdWU=",  # base64 my-variable-value
+            "updateTime": "2016-04-14T21:21:54.5000Z",
+            "state": "UPDATED",
+        }
+        conn = _Connection(RESOURCE)
+        client = _Client(project=self.PROJECT, connection=conn)
+        config = Config(name=self.CONFIG_NAME, client=client)
+        variable = config.get_variable(self.VARIABLE_NAME)
+        with self.assertRaises(Error) as ctx:
+            variable.text = "bar"
+        self.assertEqual("Value and text are mutually exclusive.",
+                         str(ctx.exception))
+
+    def test_update_value_conflict(self):
+        from google.cloud.runtimeconfig.config import Config
+        from google.cloud.runtimeconfig.exceptions import Error
+
+        RESOURCE = {
+            "name": self.PATH,
+            "text": "foo",
+            "updateTime": "2016-04-14T21:21:54.5000Z",
+            "state": "UPDATED",
+        }
+        conn = _Connection(RESOURCE)
+        client = _Client(project=self.PROJECT, connection=conn)
+        config = Config(name=self.CONFIG_NAME, client=client)
+        variable = config.get_variable(self.VARIABLE_NAME)
+        with self.assertRaises(Error) as ctx:
+            variable.value = b"bar"
+        self.assertEqual("Value and text are mutually exclusive.",
+                         str(ctx.exception))
+
+    def test_update_not_found(self):
+        from google.cloud.runtimeconfig.config import Config
+        RESOURCE = {
+            "name": self.PATH,
+            "text": "foo",
+            "updateTime": "2016-04-14T21:21:54.5000Z",
+            "state": "UPDATED",
+        }
+        conn = _Connection(RESOURCE)
+        client = _Client(project=self.PROJECT, connection=conn)
+        config = Config(name=self.CONFIG_NAME, client=client)
+        variable = config.get_variable(self.VARIABLE_NAME)
+        self.assertFalse(variable.update())
+
     def test_update_text(self):
         from google.cloud.runtimeconfig.config import Config
 
