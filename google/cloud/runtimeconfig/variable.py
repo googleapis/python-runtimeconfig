@@ -259,7 +259,7 @@ class Variable(object):
             data["text"] = self._properties["text"]
         elif "value" in self._properties:
             value = self._properties["value"]
-            data["value"] = base64.b64encode(value).decode('utf-8')
+            data["value"] = base64.b64encode(value).decode("utf-8")
         else:
             raise Error("No text or value set.")
         return data
@@ -282,8 +282,7 @@ class Variable(object):
         path = "%s/variables" % self.config.path
         data = self._get_payload()
         try:
-            resp = client._connection.api_request(method="POST",
-                                                  path=path, data=data)
+            resp = client._connection.api_request(method="POST", path=path, data=data)
         except Conflict:
             return False
         self._set_properties(resp)
@@ -306,8 +305,9 @@ class Variable(object):
         client = self._require_client(client)
         data = self._get_payload()
         try:
-            resp = client._connection.api_request(method="PUT",
-                                                  path=self.path, data=data)
+            resp = client._connection.api_request(
+                method="PUT", path=self.path, data=data
+            )
         except NotFound:
             return False
         self._set_properties(resp)

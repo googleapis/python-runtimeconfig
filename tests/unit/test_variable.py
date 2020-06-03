@@ -148,8 +148,10 @@ class TestVariable(unittest.TestCase):
         self.assertEqual(len(conn._requested), 1)
         req = conn._requested[0]
         self.assertEqual(req["method"], "POST")
-        self.assertEqual(req["path"], "/projects/%s/configs/%s/variables" % (
-                         self.PROJECT, self.CONFIG_NAME))
+        self.assertEqual(
+            req["path"],
+            "/projects/%s/configs/%s/variables" % (self.PROJECT, self.CONFIG_NAME),
+        )
         self._verifyResourceProperties(variable, RESOURCE)
 
     def test_create_value(self):
@@ -171,8 +173,10 @@ class TestVariable(unittest.TestCase):
         self.assertEqual(len(conn._requested), 1)
         req = conn._requested[0]
         self.assertEqual(req["method"], "POST")
-        self.assertEqual(req["path"], "/projects/%s/configs/%s/variables" % (
-                         self.PROJECT, self.CONFIG_NAME))
+        self.assertEqual(
+            req["path"],
+            "/projects/%s/configs/%s/variables" % (self.PROJECT, self.CONFIG_NAME),
+        )
         self._verifyResourceProperties(variable, RESOURCE)
 
     def test_update_text_conflict(self):
@@ -191,8 +195,7 @@ class TestVariable(unittest.TestCase):
         variable = config.get_variable(self.VARIABLE_NAME)
         with self.assertRaises(Error) as ctx:
             variable.text = "bar"
-        self.assertEqual("Value and text are mutually exclusive.",
-                         str(ctx.exception))
+        self.assertEqual("Value and text are mutually exclusive.", str(ctx.exception))
 
     def test_update_value_conflict(self):
         from google.cloud.runtimeconfig.config import Config
@@ -210,11 +213,11 @@ class TestVariable(unittest.TestCase):
         variable = config.get_variable(self.VARIABLE_NAME)
         with self.assertRaises(Error) as ctx:
             variable.value = b"bar"
-        self.assertEqual("Value and text are mutually exclusive.",
-                         str(ctx.exception))
+        self.assertEqual("Value and text are mutually exclusive.", str(ctx.exception))
 
     def test_update_not_found(self):
         from google.cloud.runtimeconfig.config import Config
+
         RESOURCE = {
             "name": self.PATH,
             "text": "foo",
