@@ -129,6 +129,17 @@ class TestVariable(unittest.TestCase):
             variable.create()
         self.assertEqual("No text or value set.", str(ctx.exception))
 
+    def test_create_conflict(self):
+        from google.cloud.exceptions import Conflict
+        from google.cloud.runtimeconfig.config import Config
+
+        conn = _Connection(Conflict("test"))
+        client = _Client(project=self.PROJECT, connection=conn)
+        config = Config(name=self.CONFIG_NAME, client=client)
+        variable = config.variable(self.VARIABLE_NAME)
+        variable.text = "foo"
+        self.assertFalse(variable.create())
+
     def test_create_text(self):
         from google.cloud.runtimeconfig.config import Config
 
@@ -368,4 +379,6 @@ class _Connection(object):
         except IndexError:
             raise NotFound("miss")
         else:
+            if issubclass(type(response), Exception):
+                raise response
             return response
