@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-runtimeconfig.git",
-        "sha": "0a2bf70a4a672dc00d88990280bcc81d4f45c217"
+        "sha": "6a707df5051c58711621bfc70f459674d35a80f9"
       }
     },
     {
