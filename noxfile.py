@@ -373,6 +373,7 @@ def prerelease_deps(session):
     prerel_deps = [
         "protobuf",
         # dependency of grpc
+        "six",
         "googleapis-common-protos",
         # Exclude version 1.52.0rc1 which has a known issue. See https://github.com/grpc/grpc/issues/32163
         "grpcio!=1.52.0rc1",
