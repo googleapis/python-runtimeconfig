@@ -26,7 +26,7 @@ description = "Google Cloud RuntimeConfig API client library"
 version = {}
 with open("google/cloud/runtimeconfig/version.py") as fp:
     exec(fp.read(), version)
-version = version['__version__']
+version = version["__version__"]
 
 
 # Should be one of:
