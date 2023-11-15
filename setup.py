@@ -28,6 +28,7 @@ with open("google/cloud/runtimeconfig/version.py") as fp:
     exec(fp.read(), version)
 version = version['__version__']
 
+
 # Should be one of:
 # 'Development Status :: 3 - Alpha'
 # 'Development Status :: 4 - Beta'
@@ -37,7 +38,7 @@ dependencies = [
     # NOTE: Maintainers, please do not require google-cloud-core>=2.x.x
     # Until this issue is closed
     # https://github.com/googleapis/google-cloud-python/issues/10566
-    "google-cloud-core >= 1.3.0, < 3.0dev",
+    "google-cloud-core >= 1.4.4, < 3.0dev",
 ]
 extras = {}
 
@@ -81,6 +82,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
         "Topic :: Internet",
     ],
