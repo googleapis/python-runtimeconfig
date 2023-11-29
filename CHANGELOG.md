@@ -4,7 +4,7 @@
 
 [1]: https://pypi.org/project/google-cloud-runtimeconfig/#history
 
-## [0.34.0](https://github.com/googleapis/python-runtimeconfig/compare/v0.33.3...v0.34.0) (2023-11-29)
+## [0.34.0rc1](https://github.com/googleapis/python-runtimeconfig/compare/v0.33.3...v0.34.0rc1) (2023-11-29)
 
 
 ### Features
