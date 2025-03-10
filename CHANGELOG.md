@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-runtimeconfig/#history
 
+## [0.35.1](https://github.com/googleapis/python-runtimeconfig/compare/v0.35.0...v0.35.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* Resolve issues where pre-release versions of dependencies are installed ([#318](https://github.com/googleapis/python-runtimeconfig/issues/318)) ([1433704](https://github.com/googleapis/python-runtimeconfig/commit/14337044ae5d5c33a10f4a9dbb322db3352963e2))
+
 ## [0.35.0](https://github.com/googleapis/python-runtimeconfig/compare/v0.34.0...v0.35.0) (2025-01-30)
 
 
