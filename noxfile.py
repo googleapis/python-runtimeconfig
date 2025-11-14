@@ -42,6 +42,7 @@ UNIT_TEST_PYTHON_VERSIONS: List[str] = [
     "3.11",
     "3.12",
     "3.13",
+    "3.14",
 ]
 UNIT_TEST_STANDARD_DEPENDENCIES = [
     "mock",
@@ -173,10 +174,7 @@ def install_unittest_dependencies(session, *constraints):
     ["python", "upb", "cpp"],
 )
 def unit(session, protobuf_implementation):
-    # Install all test dependencies, then install this package in-place.
-
-    if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12", "3.13"):
-        session.skip("cpp implementation is not supported in python 3.11+")
+        if protobuf_implementation == "cpp" and session.python in ("3.11", "3.12", "3.13", "3.14"):        session.skip("cpp implementation is not supported in python 3.11+")
 
     constraints_path = str(
         CURRENT_DIRECTORY / "testing" / f"constraints-{session.python}.txt"
