@@ -4,6 +4,19 @@
 
 [1]: https://pypi.org/project/google-cloud-runtimeconfig/#history
 
+## [0.36.0](https://github.com/googleapis/google-cloud-python/compare/google-cloud-runtimeconfig-v0.35.0...google-cloud-runtimeconfig-v0.36.0) (2025-12-15)
+
+
+### Features
+
+* Add Python 3.14 support (#327) ([6838b2469b74a868b2ab9a4f9b951fbe421a60eb](https://github.com/googleapis/google-cloud-python/commit/6838b2469b74a868b2ab9a4f9b951fbe421a60eb))
+
+
+### Bug Fixes
+
+* remove setup.cfg configuration for creating universal wheels (#321) ([922db8cec6b2896087d95dc7f360a4b2edeaaea0](https://github.com/googleapis/google-cloud-python/commit/922db8cec6b2896087d95dc7f360a4b2edeaaea0))
+* resolve issues where pre-release versions of dependencies are installed (#318) ([14337044ae5d5c33a10f4a9dbb322db3352963e2](https://github.com/googleapis/google-cloud-python/commit/14337044ae5d5c33a10f4a9dbb322db3352963e2))
+
 ## [0.35.0](https://github.com/googleapis/python-runtimeconfig/compare/v0.34.0...v0.35.0) (2025-01-30)
 
 
